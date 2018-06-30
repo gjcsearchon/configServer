@@ -1,7 +1,56 @@
 from: git-dev-1.0  refresh  8890
+#将原来在客户端的配置文件信息，放到配置服务器中
 spring:
   rabbitmq:
     host: localhost
     port: 5672
     username: gjc
     password: 123456
+  security:
+    user:
+      name: root
+      password: rootmanager    
+server:
+  port: 8889      
+
+management.endpoints.web.base-path: /actuator
+management:
+  endpoint:
+    beans:
+      enabled: true
+      cache:
+        time-to-live: 10s #设置缓存生存时间10       
+    env:
+      enabled: true
+    shutdown:
+      enabled: true
+    refresh:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+  
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        exclude: shutdown
+        include: bus-refresh,beans,refresh,health,info,configprops,env,conditions,metrics,mappings #'*'
+      cors:
+        allowed-origins: '*' #跨域支持http://example.com  
+        allowed-methods: GET,POST
+#  server:
+#    port: 9999  #管理端点的端口号，可以独立一应用端口号
+#port: -1时禁用http端点
+#    ssl:
+#      enabled:  #管理端口使用HTTP,不使用HTTPS
+#management.endpoints.web.exposure.include=*
+#management.endpoints.web.exposure.exclude=env,beans      
+#info信息返回
+info:  
+  app:  
+    name: "@project.name@"   
+    description: "@project.description@"  
+    version: "@project.version@"  
+    spring-boot-version: "@project.parent.version@"   
