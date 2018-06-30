@@ -40,7 +40,7 @@ management:
     web:
       exposure:
         exclude: shutdown
-        include: bus-refresh,beans,refresh,health,info,configprops,env,conditions,metrics,mappings #'*'
+        include: bus-refresh,beans,refresh,health,info,configprops,env,conditions,metrics,mappings,trace #'*'
       cors:
         allowed-origins: '*' #跨域支持http://example.com  
         allowed-methods: GET,POST
