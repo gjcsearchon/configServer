@@ -5,11 +5,11 @@ spring:
     host: localhost
     port: 5672
     username: gjc
-    password: 123456
+    password: '{cipher}AQBcO6xQMM4VLBMm8TNNBhEJnk9aEw33pxuekHPOeYlv4qwCkcJTLI/qpLrLjztU2A2+suleeot7MvdtBHsH21VN2PJOPuubiK+SOPMV0q4F69V9UBoOUdhqCMw9hmVslRQcy5hmF610K+ozhczm10FiMHhdL5ykrWBB2WMhZxaMr9PX61mZHMKDFtVVDWRFBI9GceYLOv6m36KVt6LybZyDHpL6Lbr8OWo1bk18GFTLLC9dteCT62q8YAj3J7p1F6b20xuRm0KBdaA9ps50xX501I1w6atfqPZfNKP34zBaIuV1YuuJgCwyUVzIJDH+qHBD9mngzOIQY3SStHxnbFoiouSeWpG5eWyA6JfDBao1tJrR8bu9dCeaEmVDp64EmYI='
   security:
     user:
       name: root
-      password: rootmanager    
+      password: '{cipher}AQAr1jxC5T32qKFuTjVa0x2nLLxTGsqWuLRljpRDlbzSU+CUYjPtlA84i5E24i5Sj8gEHKleVRrVXtpK2/EwH9jK65VjHygLLenVC7MhvwQVtgRmYaFqK+siHRzIP8bru9gy8PmBmEJRTMwpQV1nJPSLaKes2o6fMGSus8sGSAp2dKHSe9xTb0t7tiynsQ6eCjTHr3B//3AwpvXlG09AIY4KpezO157B5BlXIH0aFBpp3cBTjxs/Wo97uETopofCIOKmgnLYYL7VhEkzcw4DLvXZtgzr5w2Joh8LRitdIpzWzJOfX7Bj3dp6N4VN4pOslG7WQ5zajQqVkB5nF9x512NZ0dzCS2KuXt1a0jLnlhCWHc9HTmR3cMG7+uaT0Db/2GE='    
 server:
   port: 8889      
 
