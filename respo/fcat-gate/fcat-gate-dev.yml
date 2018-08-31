@@ -5,9 +5,18 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 20000
-        
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: gjc
+    password: 123456 
+
+            
 server:
-    port: 8965
+  port: 8965
+
 
 zuul:
   ignoredServices: '*'
@@ -26,14 +35,17 @@ zuul:
       stripPrefix: true
       sensitiveHeaders: 
 
+      
+
+     
 ribbon:
   ReadTimeout: 20000
   ConnectTimeout: 20000
 
 eureka:
-    client:
-        serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
 
 security:
   sessions: stateless
@@ -45,10 +57,10 @@ security:
       service-id: fcat-gate
       
 logging:
-    level:
-        com.xfdmao.fcat.gate: DEBUG
-    config: classpath:logback.xml
-    path: /fcat/gate
+  level:
+    com.xfdmao.fcat.gate: DEBUG
+  config: classpath:logback.xml
+  path: /fcat/gate
  
  
 
