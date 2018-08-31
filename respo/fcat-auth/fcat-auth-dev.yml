@@ -1,6 +1,3 @@
-server:
-  port: 8966
-
 fcat:
   auth:
     clientId: fcat
@@ -13,3 +10,13 @@ logging:
         com.xfdmao.fcat.api: DEBUG
     config: classpath:logback.xml
     path: /fcat/auth
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+info:
+  message: authServer for other springClient must be setting in application.yml file.
+    
