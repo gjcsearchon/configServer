@@ -10,7 +10,9 @@ fcat:
     clientId: fcat
     clientSecret: fcatSecret
     scope: server
-        
+    keystoreKey: mypass    
+    keystoerFilePath:  #密钥文件全路径,为空时为classpath:keystore.jks
+    keystoreSelfKey: test ; //生成密钥的密码
 logging:
     level:
         com.xfdmao.fcat.auth: DEBUG
