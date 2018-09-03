@@ -10,9 +10,9 @@ fcat:
     clientId: fcat
     clientSecret: fcatSecret
     scope: server
-    keystoreKey: mypass    
+    keystoreKey: foobar
     keystoerFilePath:  #密钥文件全路径,为空时为classpath:keystore.jks
-    keystoreSelfKey: mypass #成密钥的密码
+    keystoreSelfKey: test #成密钥的密码alia
 logging:
     level:
         com.xfdmao.fcat.auth: DEBUG
