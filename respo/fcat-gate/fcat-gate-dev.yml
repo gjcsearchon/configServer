@@ -1,3 +1,5 @@
+server:
+  port:  8965
 spring:
   application:
     name: fcat-gate
@@ -32,14 +34,22 @@ spring:
    # password: 123456
 
 zuul:
-  routes:
-    fcat-user:
-      path: /fcat-user/**
-      serviceId: fcat-user
+  ignoredServices: '*'
   sensitive-headers:
   host:
      connect-timeout-millis: 60000
      socket-timeout-millis: 60000
+  routes:
+    fcat-user:
+      path: /fcat-user/**
+      serviceId: fcat-user
+      stripPrefix: false
+      sensitiveHeaders:
+    fcat-auth:
+      path: /fcat-auth/**
+      serviceId: fcat-auth
+      stripPrefix: false
+      sensitiveHeaders:
 
 ribbon:
   eureka:
@@ -48,7 +58,14 @@ ribbon:
   ConnectTimeout: 60000
 
 security:
+    sessions: stateless
     oauth2:
+      resource:
+        #loadBalanced: true   #设置这个才可以使用eureka的服务名，配合loadBalancerInterceptor bean。
+        user-info-uri: http://fcat-auth/user  #获取用户信息
+        prefer-token-info: false
+        #tokenInfoUri:   #JWT verifier key
+        service-id: fcat-gate
       client:
         client-id: xfdmao-client
         client-secret: xfdmao-secret
@@ -105,3 +122,8 @@ management:
 #自己注释
 #  resource:
 #    userInfoUri: https://api.github.com/user
+logging:
+  level:
+    com.xfdmao.fcat.gate: DEBUG
+  config: classpath:logback.xml
+  path: /fcat/gate
