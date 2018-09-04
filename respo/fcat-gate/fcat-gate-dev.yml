@@ -1,66 +1,109 @@
+spring:
+  application:
+    name: fcat-gate
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: gjc
+    password: 123456
+  redis:
+    host:  localhost
+    database: 7
+    password: 123456
+    port: 6379
+    timeout: 3000ms  #只难设置为ms不能为其它单位
+    jedis:
+      pool:
+        max-active: 8  #替换了axTotal: 8
+        min-idle: 1 # 连接池中的最小空闲连接
+        max-idle: 8 # 连接池中的最大空闲连接
+        max-wait: -1ms #连接池最大阻塞等待时间（使用负值表示没有限制）
+        testOnBorrow: true
+        #max-wait: -1
+    cache:
+      expirationTimeMillis: 3000   #缓存过期时间 （这毫秒)
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+
+zuul:
+  routes:
+    fcat-user:
+      path: /fcat-user/**
+      serviceId: fcat-user
+  sensitive-headers:
+  host:
+     connect-timeout-millis: 60000
+     socket-timeout-millis: 60000
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+eureka:
+    instance:
+        statusPageUrlPath: ${management.endpoints.web.base-path}/info
+        healthCheckUrlPath: ${management.endpoints.web.base-path}/health
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+security:
+    oauth2:
+      client:
+        client-id: xfdmao-client
+        client-secret: xfdmao-secret
+        scope: read,write
+        auto-approve-scopes: '.*'
+        grant-type: password
+#    user:
+#        name: admin
+#        password: admin
+#        role: USER
+#    basic:
+#      enabled: false
+
+
 hystrix:
   command:
     default:
       execution:
         isolation:
+          strategy: SEMAPHORE
           thread:
-            timeoutInMilliseconds: 20000
+            timeoutInMilliseconds: 60000
 
-spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: gjc
-    password: 123456 
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+#  server:
+ #   servlet:
+  #    context-path:
 
-            
-server:
-  port: 8965
+#作用？自己注释
+#github:
+#  client:
+#    clientId: 5a2351a20bbb4297592f
+#    clientSecret: 10f9ec57ffb067dd34214656aa3971fb31e7d500
+#    accessTokenUri: https://github.com/login/oauth/access_token
+#    userAuthorizationUri: https://github.com/login/oauth/authorize
+#    authenticationScheme: query
+#    clientAuthenticationScheme: form
 
+#    pre-established-redirect-uri: http://localhost:8090/login/github
+#    registered-redirect-uri: http://localhost:8090/login/github
+#    use-current-uri: false
 
-zuul:
-  ignoredServices: '*'
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
-  routes:
-    fcat-user:
-      path: /fcat-user/**
-      serviceId: fcat-user
-      stripPrefix: true
-      sensitiveHeaders:
-    fcat-auth:
-      path: /fcat-auth/**
-      serviceId: fcat-auth
-      stripPrefix: true
-      sensitiveHeaders: 
-
-      
-
-     
-ribbon:
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-security:
-  sessions: stateless
-  oauth2:
-    resource:
-      loadBalanced: true
-      user-info-uri: http://fcat-auth/user
-      prefer-token-info: false
-      service-id: fcat-gate
-      
-logging:
-  level:
-    com.xfdmao.fcat.gate: DEBUG
-  config: classpath:logback.xml
-  path: /fcat/gate
- 
- 
-
+#自己注释
+#  resource:
+#    userInfoUri: https://api.github.com/user
