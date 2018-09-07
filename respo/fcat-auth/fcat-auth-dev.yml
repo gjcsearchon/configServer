@@ -32,6 +32,8 @@ fcat:
     keystoreKey: foobar
     keystoerFilePath:  #密钥文件全路径,为空时为classpath:keystore.jks
     keystoreAliasKey: test #成密钥的密码alia
+    accessTokenValiditySeconds: 7200   #有效时间7200秒
+    refreshTokenValiditySeconds:  10000 #有效时间7200秒    
 logging:
     level:
         com.xfdmao.fcat.auth: DEBUG
